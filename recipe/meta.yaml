@@ -11,17 +11,19 @@ source:
   git_rev: ece1a3e525a2970873c9522035a83eade65f4604
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: cp -rv $SRC_DIR/stubs/typed-ast/typed_ast $SP_DIR/typed_ast-stubs
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
   run:
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python {{ python_min }}
   commands:
     - test -f $SP_DIR/typed_ast-stubs/__init__.pyi
 
